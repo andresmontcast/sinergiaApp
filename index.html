@@ -51,16 +51,16 @@
                     <div class="form-row">
                     </div>
                     <div class="form-group">
-                        <label for="inputAddress">Imagen de Campana</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="Escriba el url de la imagen que desea">
+                        <label for="inputAddress">Imagen de Camp</label>
+                        <input type="text" class="form-control" id="imgUrlCam" placeholder="Escriba el url de la imagen que desea">
                     </div>
                     <div class="form-group">
-                        <label for="inputAddress2">Descripcion</label>
-                        <input type="text" class="form-control" id=" " placeholder="Escriba el numero de Camp">
+                        <label for="inputAddress2">Numero de Camp</label>
+                        <input type="text" class="form-control" id="numCam" placeholder="Escriba el numero de Camp">
                     </div>
                     <div class="form-row">
                     </div>
-                    <button type="submit" class="btn btn-outline-dark">Sign in</button>
+                  
                 </form>
             </div>
             <div id="addSegmento"  class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
@@ -88,13 +88,14 @@
     var segmento = [];
     var zona = 61;
     var segmenSur = [2, 34, 3, 6];
-
+   
+ 
     function numGrupos() {
 
         var numGrup = document.getElementById("segCant").value;
         var repat = document.getElementById("addSegmento");
         for (let i = 1; i <= numGrup; i++) {
-            repat.innerHTML += ' <div class="card"><div class="card-body"> <h5 class="card-title"> Segmento tester</h5><p class="card-text">ingresa el nombre, junto sin espacios.</p> <div class="input-group mb-3"><div class="input-group-prepend"> <span class="input-group-text" >Nombre </span> </div> <input type="text" id="nomSeg" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></div><div class="input-group mb-3"><div class="input-group-prepend">    <span class="input-group-text" >URL</span>   </div>  <input id="urlCamb" type="text" id="nomSeg" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"> </div> <div class="input-group mb-3"> <input type="text" class="form-control" id="segmentoIn" placeholder="ingresa las zonas recuerda usar la coma" aria-label="Recipients username aria-describedby="basic-addon2"> <div class="input-group-append" onclick="addSeg()"> </div>  </div><div  onclick="addSeg()">  <button class="btn btn-outline-dark btn-block" type="button">Agregar</button> </div> ' + i +
+            repat.innerHTML += ' <div class="card"><div class="card-body"> <h5 class="card-title"> Segmento tester</h5><p class="card-text">ingresa el nombre, junto sin espacios.</p> <div class="input-group mb-3"><div class="input-group-prepend"> <span class="input-group-text" >Nombre Segmento</span> </div> <input type="text" id="nomSeg" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></div><div class="input-group mb-3"><div class="input-group-prepend">    <span class="input-group-text" >PFD Link</span>   </div>  <input id="urlCamb" type="text" id="nomSeg" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"> </div> <div class="input-group mb-3"> <input type="text" class="form-control" id="segmentoIn" placeholder="ingresa las zonas recuerda usar la coma" aria-label="Recipients username aria-describedby="basic-addon2"> <div class="input-group-append" onclick="addSeg()"> </div>  </div><div  onclick="addSeg()">  <button class="btn btn-outline-dark btn-block" type="button">Agregar</button> </div> ' + i +
                 '</div>  </div>' 
                 ;
         }
@@ -124,7 +125,8 @@
         var nombre = document.getElementById("nomSeg").value;
         var urle = document.getElementById('urlCamb').value;
         var segKill = document.getElementById("addSegmento");
-
+        var imgUrlCam = document.getElementById('imgUrlCam').value;
+         var numCa = document.getElementById("numCam").value ;
 
 
   
@@ -140,24 +142,25 @@
 
         arregloFor.push(
             `for(i=0;i<`+nombre+`.length;i++){
-                if(zone==`+nombre+`[i]){
-                    document.getElementById('urlCamb').setAttribute('href',`+`'`+urle+`'`+`);
-                    break;
-                }          
-            }`     
+                if(zone==`+nombre+`[i]){`+
+                   `
+            document.getElementById('sinergiaBox').innerHTML += '<a class="sinergia_thumb sl_hover" href=`+`"`+urle+`"`+`target="_blank"><img class="img-thumb_SL" src=`+`"`+imgUrlCam+`"`+`/><h1>`+'C0'+numCa+`</h1></a>'            
+                  }         
+                 }  
+                
+                ` 
+                         
         );
         console.log(arregloFor.toString());
 
         segKill.removeChild(segKill.childNodes[1]);
         segKill.removeChild(segKill.childNodes[0]);
-
         document.getElementById("segmentoIn").value = ''
         document.getElementById("nomSeg").value = '';
-        alert("El segmento se agrego correctamente");
-
-        
+        alert("El segmento se agrego correctamente");            
 
     }
+   
     
 
     var codigoFull1 = `
@@ -476,23 +479,40 @@ var codigoFull2 =    `
       
       `
 
+     
+   
+
     function getCode() {
+      
+    nombre = document.getElementById("numCam").value ;
         document.getElementById("txtAr").value =`
         
-        //VARIABLES ZONAS 
+        //VARIABLES ZONAS CAMP `+nombre.toString()
+
+        +
+        `
 
         `
         +
   arregloFull.join(" ").toString() 
         + 
+      
         ` 
 
-        //CODIGO FOR Y CONDICIONES
+        //CODIGO FOR Y CONDICIONES CAMP `+nombre.toString()
+        +
+        `
         
         `
         +
   arregloFor.join(" ").toString() ;
-       
+
+           
+       console.log(nombre.toString());
     }
+
+
+
+    
 
 </script>
